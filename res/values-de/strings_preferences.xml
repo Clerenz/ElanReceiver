@@ -1,0 +1,36 @@
+<resources>
+
+    <string name="title_activity_settings">Einstellungen</string>
+
+    <!-- Strings related to Settings -->
+
+    <string name="pref_port_title">TCP Port</string>
+    <string name="pref_port_desc">Abgehörter Port.\nAktueller Wert:</string>
+    <string name="pref_port_key">port_preference</string>
+    <string name="pref_port_default">59170</string>
+    
+    <string name="pref_textsize_title">Textgröße</string>
+    <string name="pref_textsize_desc">Textgröße des Displays.\nAktueller Wert:</string>
+    <string name="pref_textsize_key">textsize_preference</string>
+    <string name="pref_textsize_default">600</string>
+    
+    <string name="toast_port_hint">Wähle einen Port zwischen 49152 und 65535.\nStandard ist 59170.</string>
+    <string name="toast_port_invalid">Ungültiger Wert.</string>
+
+    <string-array name="textsize_entries">
+        <item>500 dp</item>
+        <item>550 dp</item>
+        <item>600 dp</item>
+        <item>650 dp</item>
+        <item>700 dp</item>
+    </string-array>
+    <string-array name="textsize_values">
+        <item>500</item>
+        <item>550</item>
+        <item>600</item>
+        <item>650</item>
+        <item>700</item>
+    </string-array>
+    
+
+</resources>
