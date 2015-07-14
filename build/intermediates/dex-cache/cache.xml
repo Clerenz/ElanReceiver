@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\Clemens.Loos\workspace-android\ElanDisplay\ElanReceiver\app\libs\jmdns_own.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="1bb93ce1d31f2f74af9c374d17072215644e3246">
+        <dex dex="C:\Users\Clemens.Loos\workspace-android\ElanDisplay\ElanReceiver\app\build\intermediates\pre-dexed\debug\jmdns_own-4d9b91c9b3079b25cc68122d94ef42a24b8c0d85.jar" />
+    </item>
+    <item
+        jar="C:\Users\Clemens.Loos\workspace-android\sdk\extras\android\m2repository\com\android\support\support-v4\18.0.0\support-v4-18.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
+        <dex dex="C:\Users\Clemens.Loos\workspace-android\ElanDisplay\ElanReceiver\app\build\intermediates\pre-dexed\debug\support-v4-18.0.0-1f7460312feb110bf5285feab39ca79bf4e5ebe8.jar" />
+    </item>
+
+</items>

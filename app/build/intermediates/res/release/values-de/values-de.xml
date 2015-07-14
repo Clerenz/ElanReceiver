@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/C:/Users/Clemens.Loos/workspace-android/ElanDisplay/ElanReceiver/app/src/main/res/values-de/strings_preferences.xml -->
+    <eat-comment/>
+    <string-array name="textsize_entries">
+        <item>20 dp</item>
+        <item>40 dp</item>
+        <item>60 dp</item>
+        <item>80 dp</item>
+        <item>100 dp</item>
+        <item>150 dp</item>
+        <item>200 dp</item>
+        <item>250 dp</item>
+        <item>300 dp</item>
+        <item>350 dp</item>
+        <item>400 dp</item>
+        <item>450 dp</item>
+        <item>500 dp</item>
+        <item>550 dp</item>
+        <item>600 dp</item>
+        <item>650 dp</item>
+        <item>700 dp</item>
+    </string-array>
+    <string-array name="textsize_values">
+        <item>20</item>
+        <item>40</item>
+        <item>60</item>
+        <item>80</item>
+        <item>100</item>
+        <item>150</item>
+        <item>200</item>
+        <item>250</item>
+        <item>300</item>
+        <item>350</item>
+        <item>400</item>
+        <item>450</item>
+        <item>500</item>
+        <item>550</item>
+        <item>600</item>
+        <item>650</item>
+        <item>700</item>
+    </string-array>
+    <!-- From: file:/C:/Users/Clemens.Loos/workspace-android/ElanDisplay/ElanReceiver/app/src/main/res/values-de/colors.xml -->
+    <eat-comment/>
+    <color name="black_overlay">#66000000</color>
+    <!-- From: file:/C:/Users/Clemens.Loos/workspace-android/ElanDisplay/ElanReceiver/app/src/main/res/values-de/strings.xml -->
+    <eat-comment/>
+    <string name="app_name">ElanReceiver</string>
+    <string name="font_type">DejaVuSansMono.ttf</string>
+    <string name="label_cancel">Abbrechen</string>
+    <string name="label_okay">Okay</string>
+    <string name="label_process_desc">Streame Service-Informationen.</string>
+    <string name="label_process_title">Streaming…</string>
+    <string name="label_seconds">Sekunden</string>
+    <string name="label_start">♬</string>
+    <string name="mdns_service_name">elan-next-song</string>
+    <string name="mdns_service_type">_http._tcp.local.</string>
+    <string name="message_mdns_failed">Streaming des mDNS Service fehlgeschlagen.</string>
+    <string name="message_no_network">WLAN Netzwerk ist nicht verfügbar.</string>
+    <string name="notif_desc">Server lauscht an Port\u0020</string>
+    <string name="notif_title">ElanReceiver</string>
+    <string name="port">listening_port</string>
+    <!-- From: file:/C:/Users/Clemens.Loos/workspace-android/ElanDisplay/ElanReceiver/app/src/main/res/values-de/strings_preferences.xml -->
+    <eat-comment/>
+    <string name="pref_port_default">59170</string>
+    <string name="pref_port_desc">Abgehörter Port.\nAktueller Wert:</string>
+    <string name="pref_port_key">port_preference</string>
+    <string name="pref_port_title">TCP Port</string>
+    <string name="pref_textsize_default">600</string>
+    <string name="pref_textsize_desc">Textgröße des Displays.\nAktueller Wert:</string>
+    <string name="pref_textsize_key">textsize_preference</string>
+    <string name="pref_textsize_title">Textgröße</string>
+    <!-- From: file:/C:/Users/Clemens.Loos/workspace-android/ElanDisplay/ElanReceiver/app/src/main/res/values-de/strings.xml -->
+    <eat-comment/>
+    <string name="song">next_song</string>
+    <string name="spec_ident">x</string>
+    <string name="streaming_description">I\'m Elans next song display!</string>
+    <string name="streaming_service">Stream Service</string>
+    <!-- From: file:/C:/Users/Clemens.Loos/workspace-android/ElanDisplay/ElanReceiver/app/src/main/res/values-de/strings_preferences.xml -->
+    <eat-comment/>
+    <string name="title_activity_settings">Einstellungen</string>
+    <!-- From: file:/C:/Users/Clemens.Loos/workspace-android/ElanDisplay/ElanReceiver/app/src/main/res/values-de/strings.xml -->
+    <eat-comment/>
+    <string name="toast_error_listening">Fehler beim Starten des Servers.</string>
+    <string name="toast_listening">Lausche an Port\u0020</string>
+    <!-- From: file:/C:/Users/Clemens.Loos/workspace-android/ElanDisplay/ElanReceiver/app/src/main/res/values-de/strings_preferences.xml -->
+    <eat-comment/>
+    <string name="toast_port_hint">Wähle einen Port zwischen 49152 und 65535.\nStandard ist 59170.</string>
+    <string name="toast_port_invalid">Ungültiger Wert.</string>
+    <!-- From: file:/C:/Users/Clemens.Loos/workspace-android/ElanDisplay/ElanReceiver/app/src/main/res/values-de/strings.xml -->
+    <eat-comment/>
+    <string name="toast_stop_listening">Lausche nicht mehr an Port\u0020</string>
+    <!-- From: file:/C:/Users/Clemens.Loos/workspace-android/ElanDisplay/ElanReceiver/app/src/main/res/values-de/styles.xml -->
+    <eat-comment/>
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+
+        -->
+    </style>
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+    <style name="ButtonBar">
+        <item name="android:paddingLeft">2dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingRight">2dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:background">@android:drawable/bottom_bar</item>
+    </style>
+    <style name="ButtonBarButton"/>
+    <style name="FullscreenTheme" parent="android:Theme.NoTitleBar">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="buttonBarStyle">@style/ButtonBar</item>
+        <item name="buttonBarButtonStyle">@style/ButtonBarButton</item>
+    </style>
+</resources>

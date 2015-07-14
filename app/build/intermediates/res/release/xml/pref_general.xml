@@ -1,0 +1,24 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <EditTextPreference
+        android:key="@string/pref_port_key"
+        android:title="@string/pref_port_title"
+        android:summary="@string/pref_port_desc"
+        android:capitalize="words"
+        android:defaultValue="59170"
+        android:inputType="phone"
+        android:digits="0123456789"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        />
+    
+	<ListPreference 
+        android:key="@string/pref_textsize_key"
+        android:title="@string/pref_textsize_title"
+        android:summary="@string/pref_textsize_desc"
+        android:defaultValue="600" 
+        android:entries="@array/textsize_entries"
+        android:entryValues="@array/textsize_values" />
+
+</PreferenceScreen><!-- From: file:/C:/Users/Clemens.Loos/workspace-android/ElanDisplay/ElanReceiver/app/src/main/res/xml/pref_general.xml -->

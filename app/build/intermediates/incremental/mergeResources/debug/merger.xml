@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="C:\Users\Clemens.Loos\workspace-android\ElanDisplay\ElanReceiver\app\src\main\res"><file name="elan_logo" path="C:\Users\Clemens.Loos\workspace-android\ElanDisplay\ElanReceiver\app\src\main\res\drawable\elan_logo.jpg" qualifiers="" type="drawable"/><file name="ic_launcher" path="C:\Users\Clemens.Loos\workspace-android\ElanDisplay\ElanReceiver\app\src\main\res\drawable-hdpi\ic_launcher.png" qualifiers="hdpi" type="drawable"/><file name="ic_menu_preferences" path="C:\Users\Clemens.Loos\workspace-android\ElanDisplay\ElanReceiver\app\src\main\res\drawable-hdpi\ic_menu_preferences.png" qualifiers="hdpi" type="drawable"/><file name="ic_launcher" path="C:\Users\Clemens.Loos\workspace-android\ElanDisplay\ElanReceiver\app\src\main\res\drawable-ldpi\ic_launcher.png" qualifiers="ldpi" type="drawable"/><file name="ic_launcher" path="C:\Users\Clemens.Loos\workspace-android\ElanDisplay\ElanReceiver\app\src\main\res\drawable-mdpi\ic_launcher.png" qualifiers="mdpi" type="drawable"/><file name="ic_menu_preferences" path="C:\Users\Clemens.Loos\workspace-android\ElanDisplay\ElanReceiver\app\src\main\res\drawable-mdpi\ic_menu_preferences.png" qualifiers="mdpi" type="drawable"/><file name="ic_launcher" path="C:\Users\Clemens.Loos\workspace-android\ElanDisplay\ElanReceiver\app\src\main\res\drawable-xhdpi\ic_launcher.png" qualifiers="xhdpi" type="drawable"/><file name="ic_menu_preferences" path="C:\Users\Clemens.Loos\workspace-android\ElanDisplay\ElanReceiver\app\src\main\res\drawable-xhdpi\ic_menu_preferences.png" qualifiers="xhdpi" type="drawable"/><file name="activity_fullscreen" path="C:\Users\Clemens.Loos\workspace-android\ElanDisplay\ElanReceiver\app\src\main\res\layout\activity_fullscreen.xml" qualifiers="" type="layout"/><file path="C:\Users\Clemens.Loos\workspace-android\ElanDisplay\ElanReceiver\app\src\main\res\values\attrs.xml" qualifiers=""><declare-styleable name="ButtonBarContainerTheme">
+        <attr format="reference" name="buttonBarStyle"/>
+        <attr format="reference" name="buttonBarButtonStyle"/>
+    </declare-styleable></file><file path="C:\Users\Clemens.Loos\workspace-android\ElanDisplay\ElanReceiver\app\src\main\res\values\colors.xml" qualifiers=""><color name="black_overlay">#66000000</color></file><file path="C:\Users\Clemens.Loos\workspace-android\ElanDisplay\ElanReceiver\app\src\main\res\values\strings.xml" qualifiers=""><string name="song">next_song</string><string name="app_name">ElanReceiver</string><string name="toast_listening">Listening on port\u0020</string><string name="mdns_service_type">_http._tcp.local.</string><string name="toast_stop_listening">Stop listening on port\u0020</string><string name="font_type">DejaVuSansMono.ttf</string><string name="port">listening_port</string><string name="label_cancel">Cancel</string><string name="streaming_service">Stream service</string><string name="label_start">♬</string><string name="spec_ident">x</string><string name="label_process_desc">Streaming service information.</string><string name="toast_error_listening">Error starting server.</string><string name="message_no_network">WiFi network is not available.</string><string name="notif_title">ElanReceiver</string><string name="label_seconds">seconds</string><string name="mdns_service_name">elan-next-song</string><string name="message_mdns_failed">Providing mDNS service information failed.</string><string name="streaming_description">I\'m Elans next song display!</string><string name="notif_desc">Server is listening on port\u0020</string><string name="label_okay">Okay</string><string name="label_process_title">Streaming…</string></file><file path="C:\Users\Clemens.Loos\workspace-android\ElanDisplay\ElanReceiver\app\src\main\res\values\strings_preferences.xml" qualifiers=""><string-array name="textsize_values">
+        <item>20</item>
+        <item>40</item>
+        <item>60</item>
+        <item>80</item>
+        <item>100</item>
+        <item>150</item>
+        <item>200</item>
+        <item>250</item>
+        <item>300</item>
+        <item>350</item>
+        <item>400</item>
+        <item>450</item>
+        <item>500</item>
+        <item>550</item>
+        <item>600</item>
+        <item>650</item>
+        <item>700</item>
+    </string-array><string name="pref_port_default">59170</string><string name="pref_port_key">port_preference</string><string name="toast_port_hint">Choose port between 49152 and 65535.\nDefault is 59170.</string><string name="toast_port_invalid">Invalid value.</string><string name="title_activity_settings">Settings</string><string name="pref_port_title">TCP port</string><string-array name="textsize_entries">
+        <item>20 dp</item>
+        <item>40 dp</item>
+        <item>60 dp</item>
+        <item>80 dp</item>
+        <item>100 dp</item>
+        <item>150 dp</item>
+        <item>200 dp</item>
+        <item>250 dp</item>
+        <item>300 dp</item>
+        <item>350 dp</item>
+        <item>400 dp</item>
+        <item>450 dp</item>
+        <item>500 dp</item>
+        <item>550 dp</item>
+        <item>600 dp</item>
+        <item>650 dp</item>
+        <item>700 dp</item>
+    </string-array><string name="pref_textsize_default">600</string><string name="pref_port_desc">Set the port to listen on.\nCurrent value:</string><string name="pref_textsize_title">Text size</string><string name="pref_textsize_key">textsize_preference</string><string name="pref_textsize_desc">Set the display text size.\nCurrent value:</string></file><file path="C:\Users\Clemens.Loos\workspace-android\ElanDisplay\ElanReceiver\app\src\main\res\values\styles.xml" qualifiers=""><style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style><style name="ButtonBarButton"/><style name="ButtonBar">
+        <item name="android:paddingLeft">2dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingRight">2dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:background">@android:drawable/bottom_bar</item>
+    </style><style name="FullscreenTheme" parent="android:Theme.NoTitleBar">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="buttonBarStyle">@style/ButtonBar</item>
+        <item name="buttonBarButtonStyle">@style/ButtonBarButton</item>
+    </style><style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+
+        -->
+    </style></file><file path="C:\Users\Clemens.Loos\workspace-android\ElanDisplay\ElanReceiver\app\src\main\res\values-de\colors.xml" qualifiers="de"><color name="black_overlay">#66000000</color></file><file path="C:\Users\Clemens.Loos\workspace-android\ElanDisplay\ElanReceiver\app\src\main\res\values-de\strings.xml" qualifiers="de"><string name="spec_ident">x</string><string name="toast_listening">Lausche an Port\u0020</string><string name="toast_stop_listening">Lausche nicht mehr an Port\u0020</string><string name="font_type">DejaVuSansMono.ttf</string><string name="streaming_service">Stream Service</string><string name="mdns_service_type">_http._tcp.local.</string><string name="toast_error_listening">Fehler beim Starten des Servers.</string><string name="mdns_service_name">elan-next-song</string><string name="message_no_network">WLAN Netzwerk ist nicht verfügbar.</string><string name="song">next_song</string><string name="notif_title">ElanReceiver</string><string name="app_name">ElanReceiver</string><string name="label_process_title">Streaming…</string><string name="label_cancel">Abbrechen</string><string name="notif_desc">Server lauscht an Port\u0020</string><string name="label_start">♬</string><string name="label_okay">Okay</string><string name="message_mdns_failed">Streaming des mDNS Service fehlgeschlagen.</string><string name="port">listening_port</string><string name="label_process_desc">Streame Service-Informationen.</string><string name="label_seconds">Sekunden</string><string name="streaming_description">I\'m Elans next song display!</string></file><file path="C:\Users\Clemens.Loos\workspace-android\ElanDisplay\ElanReceiver\app\src\main\res\values-de\strings_preferences.xml" qualifiers="de"><string name="title_activity_settings">Einstellungen</string><string name="pref_textsize_default">600</string><string name="pref_textsize_desc">Textgröße des Displays.\nAktueller Wert:</string><string name="toast_port_invalid">Ungültiger Wert.</string><string name="pref_port_desc">Abgehörter Port.\nAktueller Wert:</string><string name="pref_port_key">port_preference</string><string-array name="textsize_entries">
+        <item>20 dp</item>
+        <item>40 dp</item>
+        <item>60 dp</item>
+        <item>80 dp</item>
+        <item>100 dp</item>
+        <item>150 dp</item>
+        <item>200 dp</item>
+        <item>250 dp</item>
+        <item>300 dp</item>
+        <item>350 dp</item>
+        <item>400 dp</item>
+        <item>450 dp</item>
+        <item>500 dp</item>
+        <item>550 dp</item>
+        <item>600 dp</item>
+        <item>650 dp</item>
+        <item>700 dp</item>
+    </string-array><string name="toast_port_hint">Wähle einen Port zwischen 49152 und 65535.\nStandard ist 59170.</string><string name="pref_port_default">59170</string><string name="pref_textsize_key">textsize_preference</string><string name="pref_textsize_title">Textgröße</string><string-array name="textsize_values">
+        <item>20</item>
+        <item>40</item>
+        <item>60</item>
+        <item>80</item>
+        <item>100</item>
+        <item>150</item>
+        <item>200</item>
+        <item>250</item>
+        <item>300</item>
+        <item>350</item>
+        <item>400</item>
+        <item>450</item>
+        <item>500</item>
+        <item>550</item>
+        <item>600</item>
+        <item>650</item>
+        <item>700</item>
+    </string-array><string name="pref_port_title">TCP Port</string></file><file path="C:\Users\Clemens.Loos\workspace-android\ElanDisplay\ElanReceiver\app\src\main\res\values-de\styles.xml" qualifiers="de"><style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style><style name="ButtonBarButton"/><style name="ButtonBar">
+        <item name="android:paddingLeft">2dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingRight">2dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:background">@android:drawable/bottom_bar</item>
+    </style><style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+
+        -->
+    </style><style name="FullscreenTheme" parent="android:Theme.NoTitleBar">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="buttonBarStyle">@style/ButtonBar</item>
+        <item name="buttonBarButtonStyle">@style/ButtonBarButton</item>
+    </style></file><file path="C:\Users\Clemens.Loos\workspace-android\ElanDisplay\ElanReceiver\app\src\main\res\values-de-v11\styles.xml" qualifiers="de-v11"><style name="FullscreenActionBarStyle" parent="android:Widget.Holo.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style><style name="AppBaseTheme" parent="android:Theme.Holo.Light">
+        <!-- API 11 theme customizations can go here. -->
+    </style><style name="FullscreenTheme" parent="android:Theme.Holo">
+        <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="buttonBarStyle">?android:attr/buttonBarStyle</item>
+        <item name="buttonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
+    </style></file><file path="C:\Users\Clemens.Loos\workspace-android\ElanDisplay\ElanReceiver\app\src\main\res\values-de-v14\styles.xml" qualifiers="de-v14"><style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <!-- API 14 theme customizations can go here. -->
+    </style></file><file path="C:\Users\Clemens.Loos\workspace-android\ElanDisplay\ElanReceiver\app\src\main\res\values-v11\styles.xml" qualifiers="v11"><style name="FullscreenTheme" parent="android:Theme.Holo">
+        <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="buttonBarStyle">?android:attr/buttonBarStyle</item>
+        <item name="buttonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
+    </style><style name="AppBaseTheme" parent="android:Theme.Holo.Light">
+        <!-- API 11 theme customizations can go here. -->
+    </style><style name="FullscreenActionBarStyle" parent="android:Widget.Holo.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style></file><file path="C:\Users\Clemens.Loos\workspace-android\ElanDisplay\ElanReceiver\app\src\main\res\values-v14\styles.xml" qualifiers="v14"><style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <!-- API 14 theme customizations can go here. -->
+    </style></file><file name="pref_general" path="C:\Users\Clemens.Loos\workspace-android\ElanDisplay\ElanReceiver\app\src\main\res\xml\pref_general.xml" qualifiers="" type="xml"/></source><source path="C:\Users\Clemens.Loos\workspace-android\ElanDisplay\ElanReceiver\app\build\generated\res\rs\debug"/><source path="C:\Users\Clemens.Loos\workspace-android\ElanDisplay\ElanReceiver\app\build\generated\res\generated\debug"/></dataSet><dataSet config="debug"><source path="C:\Users\Clemens.Loos\workspace-android\ElanDisplay\ElanReceiver\app\src\debug\res"/></dataSet><mergedItems><configuration qualifiers=""><declare-styleable name="ButtonBarContainerTheme"><attr format="reference" name="buttonBarStyle"/><attr format="reference" name="buttonBarButtonStyle"/></declare-styleable></configuration></mergedItems></merger>
