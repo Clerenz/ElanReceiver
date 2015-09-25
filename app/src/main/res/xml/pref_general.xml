@@ -32,4 +32,12 @@
         android:summary="@string/pref_enable_title_summary"
         android:title="@string/pref_enable_title_title" />
 
+    <ListPreference
+        android:defaultValue="@string/pref_textsize_default"
+        android:entries="@array/textsize_entries"
+        android:entryValues="@array/textsize_values"
+        android:key="@string/pref_textsize_key"
+        android:summary="@string/pref_textsize_desc"
+        android:title="@string/pref_textsize_title" />
+
 </PreferenceScreen>

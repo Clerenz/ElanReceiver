@@ -104,9 +104,9 @@ public class ElanServerService extends Service {
 	
 	
 	// Called from the server, if it receives a new value --> pass it to the UI activity
-	public void newValue(String text) {
-		
-    	PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+    public void newValue(String song, String title) {
+
+        PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
 		@SuppressWarnings("deprecation")
 		WakeLock aWakeLock = pm.newWakeLock(
 				PowerManager.FULL_WAKE_LOCK |
@@ -116,12 +116,13 @@ public class ElanServerService extends Service {
 		
 		Intent intent = new Intent(this, ElanReceiverActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		intent.putExtra(getResources().getString(R.string.song), text);
-		
-		startActivity(intent);
-		
-		if ( ! text.equals("") ) {
-			pm.userActivity(SystemClock.uptimeMillis(), false);
+        intent.putExtra(getResources().getString(R.string.song), song);
+        intent.putExtra(getResources().getString(R.string.title), title);
+
+        startActivity(intent);
+
+        if (!song.equals("")) {
+            pm.userActivity(SystemClock.uptimeMillis(), false);
 			aWakeLock.acquire();
 			aWakeLock.release();
 		}

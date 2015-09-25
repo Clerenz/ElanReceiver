@@ -25,9 +25,13 @@ public class MyNanoHTTPD extends NanoHTTPD {
 		if (song == null) {
 			song = "";
 		}
-		activity.newValue(song);
-		
-		String msg = "";
+        String title = parms.getProperty("title");
+        if (title == null) {
+            title = "";
+        }
+        activity.newValue(song, title);
+
+        String msg = "";
 		return new NanoHTTPD.Response( HTTP_OK, MIME_PLAINTEXT, msg );
 	}
 	

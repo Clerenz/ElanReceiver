@@ -12,15 +12,20 @@
     <string name="pref_port_key">port_preference</string>
     <string name="pref_port_default">59170</string>
 
-    <string name="pref_songsize_title">Text size</string>
-    <string name="pref_songsize_desc">Set the display text size.\nCurrent value:</string>
-    <string name="pref_songsize_key">textsize_preference</string>
-    <string name="pref_songsize_default">600</string>
+    <string name="pref_songsize_title">Song size</string>
+    <string name="pref_songsize_desc">Set the text size for the song number.\nCurrent value:</string>
+    <string name="pref_songsize_key">songsize_preference</string>
+    <string name="pref_songsize_default">500</string>
 
     <string name="pref_enable_title_key">song_title_preference</string>
     <string name="pref_enable_title_title">Enable song titles</string>
     <string name="pref_enable_title_summary">Set whether or not to show the name of the song (if available).</string>
     <bool name="pref_enable_title_default">false</bool>
+
+    <string name="pref_textsize_title">Text size</string>
+    <string name="pref_textsize_desc">Set the text size for the song title.\nCurrent value:</string>
+    <string name="pref_textsize_key">textsize_preference</string>
+    <string name="pref_textsize_default">60</string>
     
     <string name="toast_port_hint">Choose port between 49152 and 65535.\nDefault is 59170.</string>
     <string name="toast_port_invalid">Invalid value.</string>

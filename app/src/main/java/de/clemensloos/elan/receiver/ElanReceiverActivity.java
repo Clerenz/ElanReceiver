@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import de.clemensloos.elan.receiver.util.SystemUiHider;
@@ -58,23 +59,6 @@ public class ElanReceiverActivity extends Activity {
 	 */
 	private static final int HIDER_FLAGS = SystemUiHider.FLAG_HIDE_NAVIGATION;
     Handler mHideHandler = new Handler();
-    private View contentView;
-    private Intent intent;
-    private int port;
-    private SharedPreferences sharedPreferences;
-    private ProgressDialog progressDialog;
-    private FrameLayout mainLayout;
-    private Drawable elan_logo;
-    /**
-     * The instance of the {@link SystemUiHider} for this activity.
-	 */
-	private SystemUiHider mSystemUiHider;
-    Runnable mHideRunnable = new Runnable() {
-        @Override
-        public void run() {
-            mSystemUiHider.hide();
-        }
-    };
     /**
      * Touch listener to use for in-layout UI controls to delay hiding the
      * system UI. This is to prevent the jarring behavior of controls going away
@@ -87,6 +71,26 @@ public class ElanReceiverActivity extends Activity {
                 delayedHide(AUTO_HIDE_DELAY_MILLIS);
             }
             return false;
+        }
+    };
+    private View contentView;
+    private TextView songView;
+    private TextView textView;
+    private Intent intent;
+    private int port;
+    private boolean showTitle = false;
+    private SharedPreferences sharedPreferences;
+    private ProgressDialog progressDialog;
+    private FrameLayout mainLayout;
+    private Drawable elan_logo;
+    /**
+     * The instance of the {@link SystemUiHider} for this activity.
+	 */
+	private SystemUiHider mSystemUiHider;
+    Runnable mHideRunnable = new Runnable() {
+        @Override
+        public void run() {
+            mSystemUiHider.hide();
         }
     };
 
@@ -112,6 +116,15 @@ public class ElanReceiverActivity extends Activity {
         mainLayout.setBackgroundColor(Color.BLACK);
         elan_logo = getResources().getDrawable(R.drawable.elan_logo);
         elan_logo.setBounds(0, 0, elan_logo.getIntrinsicWidth(), elan_logo.getIntrinsicHeight());
+
+        songView = (TextView) findViewById(R.id.song_view);
+        textView = (TextView) findViewById(R.id.text_view);
+        showTitle = sharedPreferences.getBoolean(
+                getResources().getString(R.string.pref_enable_title_key),
+                getResources().getBoolean(R.bool.pref_enable_title_default));
+        if (!showTitle) {
+            textView.setText("");
+        }
 
         // Following things are for fullscreen view ============================
         final View controlsView = findViewById(R.id.fullscreen_content_controls);
@@ -186,9 +199,23 @@ public class ElanReceiverActivity extends Activity {
         // Refresh text size (returning from settings)
         int textsize = Integer.parseInt(sharedPreferences.getString(getResources()
                 .getString(R.string.pref_songsize_key), getResources().getString(R.string.pref_songsize_default)));
-        ((TextView) contentView).setTextSize(TypedValue.COMPLEX_UNIT_DIP, textsize);
+        songView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, textsize);
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) songView.getLayoutParams();
+        //params.setMargins(0, -50, 0, 0);
+        songView.setLayoutParams(params);
         Typeface font = Typeface.createFromAsset(getAssets(), getResources().getString(R.string.font_type));
-        ((TextView) contentView).setTypeface(font);
+        songView.setTypeface(font);
+
+        textsize = Integer.parseInt(sharedPreferences.getString(getResources()
+                .getString(R.string.pref_textsize_key), getResources().getString(R.string.pref_textsize_default)));
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, textsize);
+        params = (LinearLayout.LayoutParams) textView.getLayoutParams();
+        //params.setMargins(0, -100, 0, 0);
+        textView.setLayoutParams(params);
+
+        showTitle = sharedPreferences.getBoolean(
+                getResources().getString(R.string.pref_enable_title_key),
+                getResources().getBoolean(R.bool.pref_enable_title_default));
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(getString(R.string.local_ip_key), getIpAddr());
@@ -221,11 +248,11 @@ public class ElanReceiverActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
-		// Only one menu item directly on the bar
-		MenuItem buttonSettings = menu.add("");
-		buttonSettings.setIcon(R.drawable.ic_menu_preferences);
-		buttonSettings.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-		buttonSettings.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+        // Only one menu item directly on the bar
+        MenuItem buttonSettings = menu.add("");
+        buttonSettings.setIcon(R.drawable.ic_menu_preferences);
+        buttonSettings.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        buttonSettings.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem item) {
                 Intent settingsIntent = new Intent(ElanReceiverActivity.this, SettingsActivity.class);
                 ElanReceiverActivity.this.startActivity(settingsIntent);
@@ -251,8 +278,9 @@ public class ElanReceiverActivity extends Activity {
 
 		try {
 			String song = intent.getExtras().getString(getResources().getString(R.string.song));
-			newValue(song);
-		} catch (Exception e) {
+            String title = intent.getExtras().getString(getResources().getString(R.string.title), "");
+            newValue(song, title);
+        } catch (Exception e) {
 			// ignore, called for other reason ...
 		}
 
@@ -281,34 +309,38 @@ public class ElanReceiverActivity extends Activity {
 
 	/**
 	 * Refreshes the displayed value, ie the next song. Uses the ui thread
-	 * 
-	 * @param value
+	 *
+     * @param song
      *              the new value
      */
-	protected void newValue(final String value) {
+    protected void newValue(final String song, final String title) {
 
 		runOnUiThread(new Runnable() {
 			public void run() {
 
-				String encVal = value;
-				if (encVal.startsWith(getResources().getString(R.string.spec_ident))) {
+                String encVal = song;
+                if (encVal.startsWith(getResources().getString(R.string.spec_ident))) {
 					encVal = encVal.replace(getResources().getString(R.string.spec_ident), "");
 					int i = Integer.parseInt(encVal, 16);
 					encVal = Character.toString((char) i);
 				}
 				if( encVal.equals("El")) {
-					((TextView) contentView).setText("Elan");
-					SpannableString ss = new SpannableString("abc");
+                    songView.setText("Elan");
+                    SpannableString ss = new SpannableString("abc");
 					ImageSpan is = new ImageSpan(elan_logo, ImageSpan.ALIGN_BASELINE);
 					ss.setSpan(is, 0, 3, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
 					mainLayout.setBackgroundColor(Color.WHITE);
-					((TextView) contentView).setText(ss);
-				}
+                    songView.setText(ss);
+                }
 				else {
 					mainLayout.setBackgroundColor(Color.BLACK);
-					((TextView) contentView).setText(encVal);
-				}
-			}
+                    songView.setText(encVal);
+                }
+
+                if (showTitle) {
+                    textView.setText(title);
+                }
+            }
 		});
 	}
 
