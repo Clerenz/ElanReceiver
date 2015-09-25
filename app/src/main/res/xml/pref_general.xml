@@ -34,10 +34,17 @@
 
     <ListPreference
         android:defaultValue="@string/pref_textsize_default"
+        android:dependency="@string/pref_enable_title_key"
         android:entries="@array/textsize_entries"
         android:entryValues="@array/textsize_values"
         android:key="@string/pref_textsize_key"
         android:summary="@string/pref_textsize_desc"
         android:title="@string/pref_textsize_title" />
+
+    <CheckBoxPreference
+        android:defaultValue="@bool/pref_use_neg_margin_default"
+        android:key="@string/pref_use_neg_margin_key"
+        android:summary="@string/pref_use_neg_margin_summary"
+        android:title="@string/pref_use_neg_margin_title" />
 
 </PreferenceScreen>

@@ -26,6 +26,11 @@
     <string name="pref_textsize_desc">Set the text size for the song title.\nCurrent value:</string>
     <string name="pref_textsize_key">textsize_preference</string>
     <string name="pref_textsize_default">60</string>
+
+    <string name="pref_use_neg_margin_key">use_neg_margin_preference</string>
+    <string name="pref_use_neg_margin_title">Use negative margins</string>
+    <string name="pref_use_neg_margin_summary">Use negative margins on larger displays to avoid unused space.</string>
+    <bool name="pref_use_neg_margin_default">false</bool>
     
     <string name="toast_port_hint">Choose port between 49152 and 65535.\nDefault is 59170.</string>
     <string name="toast_port_invalid">Invalid value.</string>

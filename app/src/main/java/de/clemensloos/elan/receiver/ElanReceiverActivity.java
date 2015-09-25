@@ -59,20 +59,6 @@ public class ElanReceiverActivity extends Activity {
 	 */
 	private static final int HIDER_FLAGS = SystemUiHider.FLAG_HIDE_NAVIGATION;
     Handler mHideHandler = new Handler();
-    /**
-     * Touch listener to use for in-layout UI controls to delay hiding the
-     * system UI. This is to prevent the jarring behavior of controls going away
-     * while interacting with activity UI.
-     */
-    View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View view, MotionEvent motionEvent) {
-            if (AUTO_HIDE) {
-                delayedHide(AUTO_HIDE_DELAY_MILLIS);
-            }
-            return false;
-        }
-    };
     private View contentView;
     private TextView songView;
     private TextView textView;
@@ -91,6 +77,20 @@ public class ElanReceiverActivity extends Activity {
         @Override
         public void run() {
             mSystemUiHider.hide();
+        }
+    };
+    /**
+     * Touch listener to use for in-layout UI controls to delay hiding the
+     * system UI. This is to prevent the jarring behavior of controls going away
+     * while interacting with activity UI.
+     */
+    View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            if (AUTO_HIDE) {
+                delayedHide(AUTO_HIDE_DELAY_MILLIS);
+            }
+            return false;
         }
     };
 
@@ -201,7 +201,13 @@ public class ElanReceiverActivity extends Activity {
                 .getString(R.string.pref_songsize_key), getResources().getString(R.string.pref_songsize_default)));
         songView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, textsize);
         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) songView.getLayoutParams();
-        //params.setMargins(0, -50, 0, 0);
+        if (sharedPreferences.getBoolean(
+                getResources().getString(R.string.pref_use_neg_margin_key),
+                getResources().getBoolean(R.bool.pref_use_neg_margin_default))) {
+            params.setMargins(0, -50, 0, 0);
+        } else {
+            params.setMargins(0, 0, 0, 0);
+        }
         songView.setLayoutParams(params);
         Typeface font = Typeface.createFromAsset(getAssets(), getResources().getString(R.string.font_type));
         songView.setTypeface(font);
@@ -210,7 +216,13 @@ public class ElanReceiverActivity extends Activity {
                 .getString(R.string.pref_textsize_key), getResources().getString(R.string.pref_textsize_default)));
         textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, textsize);
         params = (LinearLayout.LayoutParams) textView.getLayoutParams();
-        //params.setMargins(0, -100, 0, 0);
+        if (sharedPreferences.getBoolean(
+                getResources().getString(R.string.pref_use_neg_margin_key),
+                getResources().getBoolean(R.bool.pref_use_neg_margin_default))) {
+            params.setMargins(0, -100, 0, 0);
+        } else {
+            params.setMargins(0, 0, 0, 0);
+        }
         textView.setLayoutParams(params);
 
         showTitle = sharedPreferences.getBoolean(
