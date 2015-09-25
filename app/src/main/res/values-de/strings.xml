@@ -4,24 +4,17 @@
     <string name="app_name">ElanReceiver</string>
     
     <string name="message_no_network">WLAN Netzwerk ist nicht verfügbar.</string>
-    <string name="message_mdns_failed">Streaming des mDNS Service fehlgeschlagen.</string>    
     
     <string name="notif_title">ElanReceiver</string>
     <string name="notif_desc">Server lauscht an Port\u0020</string>
     
     <string name="label_start">&#x266C;</string>
-    <string name="label_process_title">Streaming&#8230;</string>
-    <string name="label_process_desc">Streame Service-Informationen.</string>
-    <string name="label_seconds">Sekunden</string>
     <string name="label_cancel">Abbrechen</string>
     <string name="label_okay">Okay</string>
     
     <string name="toast_listening">Lausche an Port\u0020</string>
     <string name="toast_error_listening">Fehler beim Starten des Servers.</string>
     <string name="toast_stop_listening">Lausche nicht mehr an Port\u0020</string>
-    
-    <string name="streaming_service">Stream Service</string>
-    <string name="streaming_description">I\'m Elans next song display!</string>
 
     <string name="font_type">DejaVuSansMono.ttf</string>
     <string name="spec_ident">x</string>
@@ -29,6 +22,4 @@
     <string name="port">listening_port</string>
     <string name="song">next_song</string>
 
-    <string name="mdns_service_name">elan-next-song</string>
-    <string name="mdns_service_type">_http._tcp.local.</string>
 </resources>

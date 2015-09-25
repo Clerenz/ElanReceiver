@@ -1,24 +1,35 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
+    <Preference
+        android:key="@string/local_ip_key"
+        android:summary="@string/local_ip_desc"
+        android:title="@string/local_ip_title" />
+
     <EditTextPreference
-        android:key="@string/pref_port_key"
-        android:title="@string/pref_port_title"
-        android:summary="@string/pref_port_desc"
         android:capitalize="words"
         android:defaultValue="59170"
-        android:inputType="phone"
         android:digits="0123456789"
+        android:inputType="phone"
+        android:key="@string/pref_port_key"
         android:maxLines="1"
         android:selectAllOnFocus="true"
         android:singleLine="true"
+        android:summary="@string/pref_port_desc"
+        android:title="@string/pref_port_title"
         />
-    
-	<ListPreference 
-        android:key="@string/pref_textsize_key"
-        android:title="@string/pref_textsize_title"
-        android:summary="@string/pref_textsize_desc"
-        android:defaultValue="600" 
+
+    <ListPreference
+        android:defaultValue="@string/pref_songsize_default"
         android:entries="@array/textsize_entries"
-        android:entryValues="@array/textsize_values" />
+        android:entryValues="@array/textsize_values"
+        android:key="@string/pref_songsize_key"
+        android:summary="@string/pref_songsize_desc"
+        android:title="@string/pref_songsize_title" />
+
+    <CheckBoxPreference
+        android:defaultValue="@bool/pref_enable_title_default"
+        android:key="@string/pref_enable_title_key"
+        android:summary="@string/pref_enable_title_summary"
+        android:title="@string/pref_enable_title_title" />
 
 </PreferenceScreen>
