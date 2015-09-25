@@ -2,9 +2,7 @@
 <resources>
 
     <string name="app_name">ElanReceiver</string>
-    
-    <string name="message_no_network">WLAN Netzwerk ist nicht verfügbar.</string>
-    
+
     <string name="notif_title">ElanReceiver</string>
     <string name="notif_desc">Server lauscht an Port\u0020</string>
     
@@ -15,6 +13,7 @@
     <string name="toast_listening">Lausche an Port\u0020</string>
     <string name="toast_error_listening">Fehler beim Starten des Servers.</string>
     <string name="toast_stop_listening">Lausche nicht mehr an Port\u0020</string>
+    <string name="toast_no_network">WLAN Netzwerk ist nicht verfügbar.</string>
 
     <string name="font_type">DejaVuSansMono.ttf</string>
     <string name="spec_ident">x</string>

@@ -3,8 +3,6 @@
 
     <string name="app_name">ElanReceiver</string>
     
-    <string name="message_no_network">WiFi network is not available.</string>
-    
     <string name="notif_title">ElanReceiver</string>
     <string name="notif_desc">Server is listening on port\u0020</string>
     
@@ -15,6 +13,7 @@
     <string name="toast_listening">Listening on port\u0020</string>
     <string name="toast_error_listening">Error starting server.</string>
     <string name="toast_stop_listening">Stop listening on port\u0020</string>
+    <string name="toast_no_network">WiFi network is not available.</string>
 
     <string name="font_type">DejaVuSansMono.ttf</string>
     <string name="spec_ident">x</string>

@@ -1,22 +1,22 @@
 package de.clemensloos.elan.receiver;
 
 
-
-import java.io.IOException;
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.IBinder;
 import android.os.PowerManager;
-import android.os.SystemClock;
 import android.os.PowerManager.WakeLock;
+import android.os.SystemClock;
 import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
 
+import java.io.IOException;
 
 
 public class ElanServerService extends Service {
@@ -39,13 +39,26 @@ public class ElanServerService extends Service {
 		return null;
 	}
 
-	
-	
-	@Override
+
+    public boolean isNetworkAvailable() {
+        ConnectivityManager cm = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        // if no network is available networkInfo will be null
+        // otherwise check if we are connected
+        return networkInfo != null && networkInfo.isConnected();
+    }
+
+    @Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		
 		port = intent.getExtras().getInt(getResources().getString(R.string.port), 0);
-		
+
+        // Is there a network at all?
+        if (!isNetworkAvailable()) {
+            Toast.makeText(this, getResources().getString(R.string.toast_no_network), Toast.LENGTH_SHORT).show();
+            return START_NOT_STICKY;
+        }
+
 		try {
 			nanoHttp = new MyNanoHTTPD(port, this);
 			Toast.makeText(this, getResources().getString(R.string.toast_listening) + port + ".", Toast.LENGTH_SHORT).show();
@@ -82,9 +95,11 @@ public class ElanServerService extends Service {
 		nm.cancel(notificationId);
 		
 		// stop the server
-		nanoHttp.stop();
-		Toast.makeText(this, getResources().getString(R.string.toast_stop_listening) + port + ".", Toast.LENGTH_SHORT).show(); 
-	}
+        if (nanoHttp != null) {
+            nanoHttp.stop();
+            Toast.makeText(this, getResources().getString(R.string.toast_stop_listening) + port + ".", Toast.LENGTH_SHORT).show();
+        }
+    }
 	
 	
 	

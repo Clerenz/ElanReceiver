@@ -58,20 +58,6 @@ public class ElanReceiverActivity extends Activity {
 	 */
 	private static final int HIDER_FLAGS = SystemUiHider.FLAG_HIDE_NAVIGATION;
     Handler mHideHandler = new Handler();
-    /**
-     * Touch listener to use for in-layout UI controls to delay hiding the
-     * system UI. This is to prevent the jarring behavior of controls going away
-     * while interacting with activity UI.
-     */
-    View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View view, MotionEvent motionEvent) {
-            if (AUTO_HIDE) {
-                delayedHide(AUTO_HIDE_DELAY_MILLIS);
-            }
-            return false;
-        }
-    };
     private View contentView;
     private Intent intent;
     private int port;
@@ -87,6 +73,20 @@ public class ElanReceiverActivity extends Activity {
         @Override
         public void run() {
             mSystemUiHider.hide();
+        }
+    };
+    /**
+     * Touch listener to use for in-layout UI controls to delay hiding the
+     * system UI. This is to prevent the jarring behavior of controls going away
+     * while interacting with activity UI.
+     */
+    View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            if (AUTO_HIDE) {
+                delayedHide(AUTO_HIDE_DELAY_MILLIS);
+            }
+            return false;
         }
     };
 
@@ -179,12 +179,6 @@ public class ElanReceiverActivity extends Activity {
     @Override
     public void onResume() {
         super.onResume();
-
-        // Is there a network at all?
-        if (!Utils.isNetworkAvailable(this)) {
-            showMessage(R.string.message_no_network);
-            // finish();
-        }
 
         // Has the port changed? (returning from settings)
         portChanged();
