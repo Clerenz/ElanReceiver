@@ -27,9 +27,10 @@ Thumbs.db
 
 # Android Studio
 *.iml
-.idea
+/.idea/workspace.xml
+/.idea/libraries
 .gradle
-**/build
+**/build/
 
 #NDK
 obj/
