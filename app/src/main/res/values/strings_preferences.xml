@@ -12,6 +12,11 @@
     <string name="pref_port_key">port_preference</string>
     <string name="pref_port_default">59170</string>
 
+    <string name="pref_popupmode_title">Popup mode</string>
+    <string name="pref_popupmode_desc">Show popup messages only.</string>
+    <string name="pref_popupmode_key">popupmode_preference</string>
+    <bool name="pref_popupmode_default">false</bool>
+
     <string name="pref_songsize_title">Song size</string>
     <string name="pref_songsize_desc">Set the text size for the song number.\nCurrent value:</string>
     <string name="pref_songsize_key">songsize_preference</string>
