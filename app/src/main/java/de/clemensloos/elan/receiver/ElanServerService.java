@@ -1,18 +1,23 @@
 package de.clemensloos.elan.receiver;
 
 
+import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.os.SystemClock;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
 
@@ -50,6 +55,10 @@ public class ElanServerService extends Service {
 
     @Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
+
+        if(intent == null) {
+            return START_NOT_STICKY;
+        }
 		
 		port = intent.getExtras().getInt(getResources().getString(R.string.port), 0);
 
@@ -104,27 +113,41 @@ public class ElanServerService extends Service {
 	
 	
 	// Called from the server, if it receives a new value --> pass it to the UI activity
-    public void newValue(String song, String title) {
+    public void newValue(final String song, final String title) {
 
         PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
 		@SuppressWarnings("deprecation")
 		WakeLock aWakeLock = pm.newWakeLock(
 				PowerManager.FULL_WAKE_LOCK |
-				PowerManager.ACQUIRE_CAUSES_WAKEUP | 
-				PowerManager.ON_AFTER_RELEASE,
+						PowerManager.ACQUIRE_CAUSES_WAKEUP |
+						PowerManager.ON_AFTER_RELEASE,
 				"TempWakeLock");
-		
-		Intent intent = new Intent(this, ElanReceiverActivity.class);
-		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra(getResources().getString(R.string.song), song);
-        intent.putExtra(getResources().getString(R.string.title), title);
 
-        startActivity(intent);
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+		boolean popup_mode = preferences.getBoolean(getResources().getString(R.string.pref_popupmode_key), false);
 
-        if (!song.equals("")) {
-            pm.userActivity(SystemClock.uptimeMillis(), false);
-			aWakeLock.acquire();
-			aWakeLock.release();
+		if (popup_mode) {
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(ElanServerService.this, song, Toast.LENGTH_LONG).show();
+                }
+            });
+		}
+
+		else {
+			Intent intent = new Intent(this, ElanReceiverActivity.class);
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			intent.putExtra(getResources().getString(R.string.song), song);
+			intent.putExtra(getResources().getString(R.string.title), title);
+
+			startActivity(intent);
+
+			if (!song.equals("")) {
+				pm.userActivity(SystemClock.uptimeMillis(), false);
+				aWakeLock.acquire();
+				aWakeLock.release();
+			}
 		}
 	}
 	
