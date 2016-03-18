@@ -19,6 +19,11 @@ import android.os.PowerManager.WakeLock;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -130,7 +135,28 @@ public class ElanServerService extends Service {
             new Handler(Looper.getMainLooper()).post(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(ElanServerService.this, song, Toast.LENGTH_LONG).show();
+
+                    String encVal = song;
+                    if (encVal.startsWith(getResources().getString(R.string.spec_ident))) {
+                        encVal = encVal.replace(getResources().getString(R.string.spec_ident), "");
+                        int i = Integer.parseInt(encVal, 16);
+                        encVal = Character.toString((char) i);
+                    }
+                    if( encVal.equals("El")) {
+                        return;
+                    }
+
+                    LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
+                    View layout = inflater.inflate(R.layout.toast_layout, null);
+
+                    TextView text = (TextView) layout.findViewById(R.id.toast_song);
+                    text.setText(encVal);
+
+                    Toast toast = new Toast(getApplicationContext());
+//                    toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, 0);
+                    toast.setDuration(Toast.LENGTH_LONG);
+                    toast.setView(layout);
+                    toast.show();
                 }
             });
 		}
