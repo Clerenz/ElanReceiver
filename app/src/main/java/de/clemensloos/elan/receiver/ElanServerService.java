@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.wifi.WifiManager;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
@@ -28,10 +29,12 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
+import de.clemensloos.elan.receiver.util.Utils;
+
 
 public class ElanServerService extends Service {
 
-	
+	private boolean running = true;
 	
 	private int port;
 	
@@ -41,6 +44,7 @@ public class ElanServerService extends Service {
 	// The notification
 	private NotificationCompat.Builder mBuilder;
 	private int notificationId = 1;
+    private int notificationIdSong = 2;
 	
 	
 	@Override
@@ -60,6 +64,8 @@ public class ElanServerService extends Service {
 
     @Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
+
+		running = true;
 
         if(intent == null) {
             return START_NOT_STICKY;
@@ -95,6 +101,8 @@ public class ElanServerService extends Service {
 		notification.flags |= Notification.FLAG_NO_CLEAR | Notification.FLAG_ONGOING_EVENT;
 		NotificationManager nm = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
 		nm.notify(notificationId, notification);
+
+		new Thread(new Watchdog()).start();
 				
 		// If we get killed, after returning from here, restart
 		return START_STICKY;
@@ -104,6 +112,8 @@ public class ElanServerService extends Service {
 	
 	@Override
 	public void onDestroy() {
+
+		running = false;
 		
 		NotificationManager nm = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
 		nm.cancel(notificationId);
@@ -118,7 +128,7 @@ public class ElanServerService extends Service {
 	
 	
 	// Called from the server, if it receives a new value --> pass it to the UI activity
-    public void newValue(final String song, final String title) {
+    public void newValue(final String song, final String title, final String artist) {
 
         PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
 		@SuppressWarnings("deprecation")
@@ -151,12 +161,27 @@ public class ElanServerService extends Service {
 
                     TextView text = (TextView) layout.findViewById(R.id.toast_song);
                     text.setText(encVal);
+                    TextView info =(TextView) layout.findViewById(R.id.toast_title);
+                    info.setText(title + (artist.equals("") ? "" : " - " + artist));
 
                     Toast toast = new Toast(getApplicationContext());
-//                    toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, 0);
                     toast.setDuration(Toast.LENGTH_LONG);
                     toast.setView(layout);
                     toast.show();
+
+					// Create the notification
+                    NotificationCompat.Builder builder = new NotificationCompat.Builder(ElanServerService.this)
+							.setSmallIcon(R.drawable.ic_launcher)
+							.setContentTitle("Next song: " + encVal)
+							.setContentText(title + (artist.equals("") ? "" : " - " + artist));
+					Intent notificationIntent = new Intent(ElanServerService.this, ElanServerService.class);
+					PendingIntent pendingIntent = PendingIntent.getActivity(ElanServerService.this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+					builder.setContentIntent(pendingIntent);
+					Notification notification = builder.build();
+//					notification.flags |= Notification.FLAG_NO_CLEAR | Notification.FLAG_ONGOING_EVENT;
+					NotificationManager nm = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+					nm.notify(notificationIdSong, notification);
+
                 }
             });
 		}
@@ -177,6 +202,40 @@ public class ElanServerService extends Service {
 		}
 	}
 	
-	
+	class Watchdog implements Runnable {
+
+		@Override
+		public void run() {
+
+			boolean issue = false;
+
+			while (running) {
+				try {
+                    //Thread.sleep(120000,0);
+                    Thread.sleep(issue ? 30000 : 180000);
+                } catch (InterruptedException e) {
+					// ignore
+				}
+
+				if(!isNetworkAvailable()) {
+					issue = true;
+                    newValue("NN", "No network!", "");
+                    WifiManager wm = (WifiManager) ElanServerService.this.getSystemService(Context.WIFI_SERVICE);
+                    if (wm.reconnect()) {
+                        if(isNetworkAvailable()) {
+                            issue = false;
+                            newValue("Ok!", "Network reconnected!", "");
+                        }
+                    }
+				}
+				else if (issue) {
+					issue = false;
+					newValue("Ok!", "Network reconnected!", "");
+				}
+
+			}
+		}
+
+	}
 	
 }
