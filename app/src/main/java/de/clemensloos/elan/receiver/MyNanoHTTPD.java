@@ -20,7 +20,12 @@ public class MyNanoHTTPD extends NanoHTTPD {
 
 	
 	public Response serve(String uri, String method, Properties header, Properties parms, Properties files) {
-		
+
+		if (uri.contains("alive")) {
+			String msg = "";
+			return new NanoHTTPD.Response( HTTP_OK, MIME_PLAINTEXT, msg );
+		}
+
 		String song = parms.getProperty("song");
 		if (song == null) {
 			song = "";
@@ -29,7 +34,11 @@ public class MyNanoHTTPD extends NanoHTTPD {
         if (title == null) {
             title = "";
         }
-        activity.newValue(song, title);
+		String artist = parms.getProperty("artist");
+		if (artist == null) {
+			artist = "";
+		}
+        activity.newValue(song, title, artist);
 
         String msg = "";
 		return new NanoHTTPD.Response( HTTP_OK, MIME_PLAINTEXT, msg );

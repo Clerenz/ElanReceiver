@@ -62,7 +62,7 @@ public class ElanReceiverActivity extends Activity {
     private View contentView;
     private TextView songView;
     private TextView textView;
-    private Intent intent;
+    private Intent serverIntent;
     private int port;
     private boolean showTitle = false;
     private SharedPreferences sharedPreferences;
@@ -115,7 +115,9 @@ public class ElanReceiverActivity extends Activity {
         mainLayout = (FrameLayout) findViewById(R.id.main_layout);
         mainLayout.setBackgroundColor(Color.BLACK);
         elan_logo = getResources().getDrawable(R.drawable.elan_logo);
-        elan_logo.setBounds(0, 0, elan_logo.getIntrinsicWidth(), elan_logo.getIntrinsicHeight());
+        if (elan_logo != null) {
+            elan_logo.setBounds(0, 0, elan_logo.getIntrinsicWidth(), elan_logo.getIntrinsicHeight());
+        }
 
         songView = (TextView) findViewById(R.id.song_view);
         textView = (TextView) findViewById(R.id.text_view);
@@ -183,9 +185,9 @@ public class ElanReceiverActivity extends Activity {
 
         // Start the service, that' hosting the server
         // TODO start only if not running ...
-        intent = new Intent(this, ElanServerService.class);
-        intent.putExtra(getResources().getString(R.string.port), port);
-        startService(intent);
+        serverIntent = new Intent(this, ElanServerService.class);
+        serverIntent.putExtra(getResources().getString(R.string.port), port);
+        startService(serverIntent);
 
     }
 
@@ -279,7 +281,7 @@ public class ElanReceiverActivity extends Activity {
 	public void onBackPressed() {
 
 		// If back is pressed (and ONLY then) the service is stopped
-		stopService(intent);
+		stopService(serverIntent);
 		super.onBackPressed();
 	}
 
@@ -311,10 +313,10 @@ public class ElanReceiverActivity extends Activity {
 			port = newPort;
 
 			// stop the service and restart with different port!
-			stopService(intent);
-			intent = new Intent(this, ElanServerService.class);
-			intent.putExtra(getResources().getString(R.string.port), port);
-			startService(intent);
+			stopService(serverIntent);
+			serverIntent = new Intent(this, ElanServerService.class);
+			serverIntent.putExtra(getResources().getString(R.string.port), port);
+			startService(serverIntent);
 		}
 
 	}
@@ -351,6 +353,9 @@ public class ElanReceiverActivity extends Activity {
 
                 if (showTitle) {
                     textView.setText(title);
+                }
+                else {
+                    textView.setText("");
                 }
             }
 		});
