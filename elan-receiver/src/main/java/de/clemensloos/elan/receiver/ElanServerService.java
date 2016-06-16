@@ -153,35 +153,40 @@ public class ElanServerService extends Service {
                         encVal = Character.toString((char) i);
                     }
                     if( encVal.equals("El")) {
-                        return;
+                        encVal = "";
                     }
 
-                    LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
-                    View layout = inflater.inflate(R.layout.toast_layout, null);
+					if(!song.equals("")) {
+						LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
+						View layout = inflater.inflate(R.layout.toast_layout, null);
 
-                    TextView text = (TextView) layout.findViewById(R.id.toast_song);
-                    text.setText(encVal);
-                    TextView info =(TextView) layout.findViewById(R.id.toast_title);
-                    info.setText(title + (artist.equals("") ? "" : " - " + artist));
+						TextView text = (TextView) layout.findViewById(R.id.toast_song);
+						text.setText(encVal);
+						TextView info = (TextView) layout.findViewById(R.id.toast_title);
+						info.setText(title + (artist.equals("") ? "" : " - " + artist));
 
-                    Toast toast = new Toast(getApplicationContext());
-                    toast.setDuration(Toast.LENGTH_LONG);
-                    toast.setView(layout);
-                    toast.show();
+						Toast toast = new Toast(getApplicationContext());
+						toast.setDuration(Toast.LENGTH_LONG);
+						toast.setView(layout);
+						toast.show();
 
-					// Create the notification
-                    NotificationCompat.Builder builder = new NotificationCompat.Builder(ElanServerService.this)
-							.setSmallIcon(R.drawable.ic_launcher)
-							.setContentTitle("Next song: " + encVal)
-							.setContentText(title + (artist.equals("") ? "" : " - " + artist));
-					Intent notificationIntent = new Intent(ElanServerService.this, ElanServerService.class);
-					PendingIntent pendingIntent = PendingIntent.getActivity(ElanServerService.this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-					builder.setContentIntent(pendingIntent);
-					Notification notification = builder.build();
-//					notification.flags |= Notification.FLAG_NO_CLEAR | Notification.FLAG_ONGOING_EVENT;
-					NotificationManager nm = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-					nm.notify(notificationIdSong, notification);
-
+						// Create the notification
+						NotificationCompat.Builder builder = new NotificationCompat.Builder(ElanServerService.this)
+								.setSmallIcon(R.drawable.ic_launcher)
+								.setContentTitle("Next song: " + encVal)
+								.setContentText(title + (artist.equals("") ? "" : " - " + artist));
+						Intent notificationIntent = new Intent(ElanServerService.this, ElanServerService.class);
+						PendingIntent pendingIntent = PendingIntent.getActivity(ElanServerService.this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+						builder.setContentIntent(pendingIntent);
+						Notification notification = builder.build();
+						//					notification.flags |= Notification.FLAG_NO_CLEAR | Notification.FLAG_ONGOING_EVENT;
+						NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+						nm.notify(notificationIdSong, notification);
+					}
+					else {
+						NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+						nm.cancel(notificationIdSong);
+					}
                 }
             });
 		}
@@ -212,7 +217,7 @@ public class ElanServerService extends Service {
 			while (running) {
 				try {
                     //Thread.sleep(120000,0);
-                    Thread.sleep(issue ? 30000 : 180000);
+                    Thread.sleep(issue ? 10000 : 30000);
                 } catch (InterruptedException e) {
 					// ignore
 				}
