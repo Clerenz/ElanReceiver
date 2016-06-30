@@ -140,6 +140,12 @@ public class ElanServerService extends Service {
 
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 		boolean popup_mode = preferences.getBoolean(getResources().getString(R.string.pref_popupmode_key), false);
+        final boolean showTitle = preferences.getBoolean(
+                getResources().getString(R.string.pref_enable_title_key),
+                getResources().getBoolean(R.bool.pref_enable_title_default));
+        final boolean showArtist = preferences.getBoolean(
+                getResources().getString(R.string.pref_enable_artist_key),
+                getResources().getBoolean(R.bool.pref_enable_artist_default));
 
 		if (popup_mode) {
             new Handler(Looper.getMainLooper()).post(new Runnable() {
@@ -163,7 +169,17 @@ public class ElanServerService extends Service {
 						TextView text = (TextView) layout.findViewById(R.id.toast_song);
 						text.setText(encVal);
 						TextView info = (TextView) layout.findViewById(R.id.toast_title);
-						info.setText(title + (artist.equals("") ? "" : " - " + artist));
+                        String subtitle = "";
+                        if (showTitle) {
+                            subtitle = title;
+                            if (!title.equals("") && showArtist && !artist.equals("")) {
+                                subtitle = subtitle + " - ";
+                            }
+                        }
+                        if (showArtist) {
+                            subtitle = subtitle + artist;
+                        }
+						info.setText(subtitle);
 
 						Toast toast = new Toast(getApplicationContext());
 						toast.setDuration(Toast.LENGTH_LONG);
@@ -196,6 +212,7 @@ public class ElanServerService extends Service {
 			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			intent.putExtra(getResources().getString(R.string.song), song);
 			intent.putExtra(getResources().getString(R.string.title), title);
+			intent.putExtra(getResources().getString(R.string.artist), artist);
 
 			startActivity(intent);
 

@@ -19,6 +19,18 @@
         />
 
     <CheckBoxPreference
+        android:defaultValue="@bool/pref_enable_title_default"
+        android:key="@string/pref_enable_title_key"
+        android:summary="@string/pref_enable_title_summary"
+        android:title="@string/pref_enable_title_title" />
+
+    <CheckBoxPreference
+        android:defaultValue="@bool/pref_enable_artist_default"
+        android:key="@string/pref_enable_artist_key"
+        android:summary="@string/pref_enable_artist_summary"
+        android:title="@string/pref_enable_artist_title" />
+
+    <CheckBoxPreference
         android:disableDependentsState="true"
         android:defaultValue="@bool/pref_popupmode_default"
         android:key="@string/pref_popupmode_key"
@@ -34,16 +46,9 @@
         android:summary="@string/pref_songsize_desc"
         android:title="@string/pref_songsize_title" />
 
-    <CheckBoxPreference
-        android:dependency="@string/pref_popupmode_key"
-        android:defaultValue="@bool/pref_enable_title_default"
-        android:key="@string/pref_enable_title_key"
-        android:summary="@string/pref_enable_title_summary"
-        android:title="@string/pref_enable_title_title" />
-
     <ListPreference
+        android:dependency="@string/pref_popupmode_key"
         android:defaultValue="@string/pref_textsize_default"
-        android:dependency="@string/pref_enable_title_key"
         android:entries="@array/textsize_entries"
         android:entryValues="@array/textsize_values"
         android:key="@string/pref_textsize_key"

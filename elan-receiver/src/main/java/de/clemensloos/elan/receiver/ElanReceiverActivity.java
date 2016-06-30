@@ -64,7 +64,8 @@ public class ElanReceiverActivity extends Activity {
     private TextView textView;
     private Intent serverIntent;
     private int port;
-    private boolean showTitle = false;
+    private boolean showTitle = true;
+    private boolean showArtist = false;
     private SharedPreferences sharedPreferences;
     private ProgressDialog progressDialog;
     private FrameLayout mainLayout;
@@ -124,7 +125,10 @@ public class ElanReceiverActivity extends Activity {
         showTitle = sharedPreferences.getBoolean(
                 getResources().getString(R.string.pref_enable_title_key),
                 getResources().getBoolean(R.bool.pref_enable_title_default));
-        if (!showTitle) {
+        showArtist = sharedPreferences.getBoolean(
+                getResources().getString(R.string.pref_enable_artist_key),
+                getResources().getBoolean(R.bool.pref_enable_artist_default));
+        if (!showTitle && !showArtist) {
             textView.setText("");
         }
 
@@ -230,6 +234,9 @@ public class ElanReceiverActivity extends Activity {
         showTitle = sharedPreferences.getBoolean(
                 getResources().getString(R.string.pref_enable_title_key),
                 getResources().getBoolean(R.bool.pref_enable_title_default));
+        showArtist = sharedPreferences.getBoolean(
+                getResources().getString(R.string.pref_enable_artist_key),
+                getResources().getBoolean(R.bool.pref_enable_artist_default));
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(getString(R.string.local_ip_key), getIpAddr());
@@ -293,7 +300,8 @@ public class ElanReceiverActivity extends Activity {
 		try {
 			String song = intent.getExtras().getString(getResources().getString(R.string.song));
             String title = intent.getExtras().getString(getResources().getString(R.string.title), "");
-            newValue(song, title);
+            String artist = intent.getExtras().getString(getResources().getString(R.string.artist), "");
+            newValue(song, title, artist);
         } catch (Exception e) {
 			// ignore, called for other reason ...
 		}
@@ -327,7 +335,7 @@ public class ElanReceiverActivity extends Activity {
      * @param song
      *              the new value
      */
-    protected void newValue(final String song, final String title) {
+    protected void newValue(final String song, final String title, final String artist) {
 
 		runOnUiThread(new Runnable() {
 			public void run() {
@@ -351,12 +359,18 @@ public class ElanReceiverActivity extends Activity {
                     songView.setText(encVal);
                 }
 
+                String subtitle = "";
                 if (showTitle) {
-                    textView.setText(title);
+                    subtitle = title;
+                    if (showArtist) {
+                        subtitle = subtitle + " - ";
+                    }
                 }
-                else {
-                    textView.setText("");
+                if (showArtist) {
+                    subtitle = subtitle + artist;
                 }
+                textView.setText(subtitle);
+
             }
 		});
 	}

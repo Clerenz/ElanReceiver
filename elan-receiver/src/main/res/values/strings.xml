@@ -22,5 +22,6 @@
     <string name="port">listening_port</string>
     <string name="song">next_song</string>
     <string name="title">next_title</string>
+    <string name="artist">next_artist</string>
 
 </resources>

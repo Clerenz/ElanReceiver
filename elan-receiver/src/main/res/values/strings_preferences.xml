@@ -24,8 +24,13 @@
 
     <string name="pref_enable_title_key">song_title_preference</string>
     <string name="pref_enable_title_title">Enable song titles</string>
-    <string name="pref_enable_title_summary">Set whether or not to show the name of the song (if available).</string>
-    <bool name="pref_enable_title_default">false</bool>
+    <string name="pref_enable_title_summary">Set whether or not to show the name of the song.</string>
+    <bool name="pref_enable_title_default">true</bool>
+
+    <string name="pref_enable_artist_key">song_artist_preference</string>
+    <string name="pref_enable_artist_title">Enable song artists</string>
+    <string name="pref_enable_artist_summary">Set whether or not to show the artist of the song.</string>
+    <bool name="pref_enable_artist_default">false</bool>
 
     <string name="pref_textsize_title">Text size</string>
     <string name="pref_textsize_desc">Set the text size for the song title.\nCurrent value:</string>
